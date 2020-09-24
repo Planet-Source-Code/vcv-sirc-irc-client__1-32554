@@ -1,0 +1,12 @@
+CLIENT = 169, 159, 1079, 728, C, 0, 0, 0, 0, C
+modmain = 159, 95, 1154, 803, C
+modColors = 146, 124, 930, 661, C
+STATUS = 512, 286, 1045, 750, C, 0, 0, 0, 0, C
+modLanguage = 65, 90, 1128, 783, C
+modWindows = 144, 253, 948, 722, C
+modStrManip = 131, 103, 578, 935, C
+modSettings = 131, 103, 934, 628, C
+SplashScreen = 151, 426, 793, 851, C, 0, 0, 0, 0, C
+modIAL = 296, 179, 1034, 659, C
+frmLoadProfile = 466, 118, 913, 952, C, 0, 0, 0, 0, C
+frmNewProfile = 370, 162, 1000, 541, C, 0, 0, 0, 0, C

@@ -1,0 +1,4 @@
+alias main
+  $x = 1
+  msg $x
+end alias

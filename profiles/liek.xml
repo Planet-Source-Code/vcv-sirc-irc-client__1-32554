@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<servers>
+  <server name="Default">
+    <addresses>
+      <address port="6667">irc.liek.net</address>
+      <address port="6667">irc.warrped.com</address>  
+    </addresses>
+    <nicks>
+      <nick>vcv</nick>
+      <nick>sappy</nick>
+      <nick>vcv-</nick>
+    </nicks>
+    <realname>Matt</realname>
+    <email>webmaster@vcv.ath.cx</email>
+    <windows>
+      <window name="Status">
+        <position left=0 top=0 width=8715 height=4665/>
+        <nicklist width=107/>
+      </window>
+      <window name="#liek">
+        <position left=0 top=0 width=8715 height=4665/>
+        <nicklist width=default/>
+      </window>
+      <window name="Status">
+        <position left=0 top=0 width=8715 height=4665/>
+        <nicklist width=default/>
+      </window>
+    </windows>
+  </server>
+  <settings>
+    <clientpos left=3315 top=3045 width=10725 heigh=5835/>
+    <display>
+      <menu>
+        <colors>
+          <face off=13160660 over=10053171 down=13160660/>
+          <hilight off=13160660 over=16777215 down=8421504/>
+          <shadow off=13160660 over=8421504 down=16777215/>
+          <text off=0 over=16777215 down=0 disabled=8421504/>
+        </colors>
+        <font face="Trebuchet MS" size=8/>
+        <sink>true</sink>
+      </menu>
+    </display>
+  </settings>
+  <scripts deffolder="C:\vb\!sirc\">
+    <script>scripts\default.sex</script>
+  </scripts>
+</servers>

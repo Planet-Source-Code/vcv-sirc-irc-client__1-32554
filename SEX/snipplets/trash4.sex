@@ -1,0 +1,4 @@
+alias main
+  msg [eval (Hello World) - (l)]
+end alias
+

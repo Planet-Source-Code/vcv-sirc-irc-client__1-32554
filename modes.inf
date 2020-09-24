@@ -1,0 +1,16 @@
+[cmdesc]
+b=Ban User
+H=Hide Bot: On servers with services, this doesn't show the Channel Bot in the userlist.
+i=Invite: Users can only join when invited.
+k=Key: Users need to know the channel key to join.
+l=Limit: Only a certain number of users can join.
+m=Moderated: Only users with op,helper, or voice status may talk.
+n=No external Messages: Users not in the channel may not send text to the channel.
+o=Op User
+p=Private Chat.
+q=Channel Owner
+r=
+s=Secret Chat.
+S=
+t=Topic can only be set by operators
+v=Voice User

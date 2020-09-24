@@ -1,0 +1,10 @@
+frmSexIDE = 210, 64, 1096, 729, , 0, 0, 0, 0, C
+clsSSE_Alias = 158, 188, 999, 781, C
+clsSSE_Main = 43, 338, 899, 817, C
+clsSSE_Script = 136, 208, 965, 672, C
+modSEX_CommonFunctions = 43, 426, 794, 890, C
+modSEX_BuiltInFunctions = 141, 103, 588, 935, C
+modSEX_Eval = 185, 173, 969, 820, C
+clsDialog = 139, 421, 867, 935, C
+frmFuncList = 139, 103, 813, 935, C, 0, 0, 0, 0, C
+modStrManip = 150, 103, 597, 935, C

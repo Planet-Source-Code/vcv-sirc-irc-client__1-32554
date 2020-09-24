@@ -1,0 +1,3 @@
+alias main
+    msg "There are [charcount [input "Enter a string"] "l"] l's in the string you inputted"
+end alias

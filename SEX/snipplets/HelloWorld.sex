@@ -1,0 +1,5 @@
+alias main
+   ; main body code goes here
+   msg [msg "Hello World" "My First Program" 53]
+end alias
+

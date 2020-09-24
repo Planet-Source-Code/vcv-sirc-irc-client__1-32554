@@ -1,0 +1,7 @@
+alias main
+    $x = 0
+    while $x < 5000
+        $y = 0
+        $x = [calc $x + 1]
+    end while
+end alias
