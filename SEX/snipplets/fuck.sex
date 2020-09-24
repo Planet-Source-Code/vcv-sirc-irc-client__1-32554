@@ -1,0 +1,4 @@
+alias main
+    $x = 0
+    msg "$x[input "hehe"]
+end alias

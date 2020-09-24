@@ -1,0 +1,32 @@
+&Connect,	file main
+&Tools,		Tools main
+&Edit,		edit main
+&View,		view main
+F&ormat,	format main
+&Commands,	commands main
+&Window,	window main
+&Help,		help main
+
+# Begin Connect menu
+&New Server,	connect_newserver
+&Connect,	connect_connect
+&Disconnect,	connect_disconnect
+
+# Begin Edit menu
+&Undo,		edit_undo
+Cu&t,		edit_cut
+&Copy,		edit_copy
+&Paste,		edit_paste
+&Delete,	edit_delete
+Select &All,	edit_selectall
+
+# Begin Format menu
+&Bold,		format_bold
+&Color,		format_color
+&Reverse,	format_reverse
+&Underline,	format_underline
+
+# Begin Window menu
+&Cascade,	window_cascade
+Tile &Horizontally,	window_tilehorizontally
+Tile &Vertically,	window_tilevertically

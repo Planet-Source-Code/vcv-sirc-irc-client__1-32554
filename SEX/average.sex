@@ -1,0 +1,15 @@
+alias main
+    $sum = 0
+    $i = 1
+    $num = [input "How many numbers?"input "How many numbers?"]
+    loop $i $num
+        $sum = [eval $sum + [input "Enter a number ($i): "]]
+    end loop
+    
+    if $num = 1
+        msg "You only entered one \#, therefore the sum is itself"
+    else
+        msg "The average of the $num numbers is: [eval $sum / $num]
+    end if
+end alias
+

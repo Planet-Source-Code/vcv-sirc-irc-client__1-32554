@@ -1,0 +1,182 @@
+0.12.xxxx - 2/xx/02
+ 1. Fixed bug where 2 or more query windows would open for the same nick if different case.  
+  ex: typing /query VCV, then getting a msg sent to you from "vcv".
+ 2. Fixed bug which caused windows to go crazy when you right clicked the active window in the taskbar
+ 3. Disabled right click in switchbar.
+ 4. Fixed bug which caused windows to restore (if maximized) when activated, even when auto maximize is enabled.
+ 5. Added "Menus" under "Display" in unders. Allows you to change colors of the menus, as well as behaviour.
+ 6. Added hotkey events!  These are POWERFUL.  They let you manipulate any hotkey to do what you please (except the hard-coded hotkeys such as ctrl+b, ctrl+r, ctrl+k, ctrl+u, ctrl+o, ctrl+n, etc).  
+  To use hotkeys, you use the prefix "hotkey".  Then after that you place the given modified, and the given key after that.  Wildcards for either is supported.
+  Syntax:
+   hotkey <modifier> <key>
+     ; code
+     ; to execute
+   end hotkey
+
+  Examples: 
+   hotkey ctrl j ;autojoin channels
+      join #sIRC,#irc,#vb
+   end hotkey
+
+   hotkey ctrl+shift+s ;print "Hello world"
+      echo -s "Hello World"
+   end hotkey
+
+  Information: 
+    <modifier> can be any of the following modifiers and/or combinations:
+    alt, ctrl, shift, alt+ctrl, alt+shift, ctrl+shift, alt+ctrl+shift
+
+    For function keys, you just use them as you would expect.
+    ex: hotkey ctrl f1
+ 7. You can now change colors/font used in the menus via options.
+ 8. Fixed bug where taskbar would sometimes show a button with empty text (or just "0:") and have the icon of the 2 people.
+ 9. You can now use | to put more than 1 line of code in a single line.
+   ex: alias helloworld | echo -a "Hello world" | end alias
+
+   If you wish to ever use | to print it literally or for purposes other than seperating lines, use \|
+   ex:
+     alias test
+        echo -s "1\|2\|3"
+     end alias
+ 
+     that would print out "|"
+10. Added format function.
+   ex:
+     alias test
+        $x = 53536.235
+        echo -s "no formatting: $x"
+        echo -s "with formatting: [format $x ###,###.#######]"
+     end alias
+11. Added lcase and ucase functions to convert text to lowercase/uppercase
+12. Added date and time functions to return date/time in given format.  In no format is specified, default format used.
+   ex:
+     alias text
+        echo -s "The date is [date]" ; no special formatting
+        echo -s "The date is [date mm/dd/yyyy]" ; mm/dd/yyyy (02/10/2002 for example)
+     end alias
+13. 
+
+0.11.4316 - 2/11/02
+ 1. Fixed the error which caused sIRC scripting to convert all scripts to lowercase when loading them, thus causing many problems, including CTCP compatbility with mIRC.
+ 2. Fixed the error which caused wildcard matching for events/aliases/ctcp NOT to work.
+ 3. Added default ctcp events for PING and TIME as well as default ctcpsend and ctcpreply events.
+ 4. Added support for whois raw codes (301,310,311,312,313,317,318,319,320)
+ 5. Fixed ChannelList flickering really bad.
+ 6. Added support for away raws (305, 306)
+ 7. Fixed errors with certain commands giving an error message for no reason.
+ 8. Added notice and opnotice commands.
+ 9. Added onotice alias for mIRC users (type /onotice <text> instead of /opnotice <chan> <text>).
+10. Added noticesend and opnoticesend events.
+11. Added support for some error raw codes (401,433,438,471)
+12. Fixed error which caused doing a /WHOIS to freeze client
+13. Added -q switch to echo command.  If query with user exists, it will echo to query, else it echos to status window.
+14. Fixed the "bug" which caused ACTIONs to be displayed at CTCPs (which they actually are) if not scripted to not show.  
+  [vcv ACTION] says "Hi".
+  Would be shown when the nick vcv did /me says "Hi".
+15. Fixed the bug which caused sirc to crash very often (anytime someone quit).  It was just a stupid programming mistake.
+16. Finally got ctcp events to work properly.
+17. Added "Servers list" to options dialog.  Allows you to have different user information and connection options for different servers.
+18. Added "Options" under "Connection" in the Options dialog.
+19. Removed the serverID in front of each window title in the switchbar. i.e. 1:, 2:
+20. Changed the text that is shown in the switchbar for the status window.  It now shows <network> [<nick>].
+21. Fixed sIRC showing "2" in the top right corner when a window is maximized.
+22. Clicking a window's button in the switchbar when that window is active will hide that wndow.
+23. Edited the -a switch for the echo command.  Now, if the active window is not part of the server which the echo is called from, it will instaed echo to the servers status window.
+24. Added dynamic Server menus under the "Window" menu.  At the bottom you will notice it lists all open server windows, then a popup for each will list all the open windows under that server, such as status, channels and queries.
+25. Updated the query and querygroup icons.
+26. Auto-maximize (under Window > Auto) now works.
+27. New main icon (feedback please!)
+28. Added $source local variable for custom aliases.
+ ex:
+ alias onotice
+    opnotice $source $1-
+ end alias
+29. Added another easter egg (there was already 1, now there is 2).  Enjoy :)
+
+0.10.3200 - 2/06/02
+ 1. Fixed the error where when a user changed nicks or quit on one network, if a user on a different network had the same nick, it would change/remove their nick in the nick list. (thanks syrius)
+ 2. Added global variables to scripting (ex: global x 5.  You access them the same way, $x.  Just be sure to declare the variable with global [unfortunately, you can only declare em within an alias/event right now])
+ 3. Added support for being able to hit the up and down keys in menus to change the hilighted item, as well as being able to hit enter to select the current item.
+ 4. Fixed the error in treeview which would cause some queries/channels not to be removed when closed.
+ 5. Added the /channelcentral command, which opens up channel properties of the specified channel (i.e. /channelcentral #sIRC).  Supports dynamic channel modes (Displays all channel modes the server supports in a list, and allows you to obviously check/uncheck any if you are an operator).
+ 6. Fixed a small bug with menu width not being calculated correctly.
+ 7. Wrote the start of a help file.  
+ 8. Fixed the menu item under view for server/topic bar not being unchecked when you hide it by clicking the button.
+ 9. Dropped the xp look for menus..went to standard windows look.
+10. Added a toolbar to the top of the Status window, where you will be able to switch between Status, Channel List, and DCC Transfers for that server (Idea borrowed from XiRCON).
+11. Treeview is now hidden by default
+12. Channel Listing now works.  Type /list to see a list of channels.
+13. Status window's server bar now hidden by default.
+14. Dropped the xp look for taskbars also.  Standard look.
+15. Sorting for Channel Lists added.
+16. Events now fall through.  This means you can have 2 text events and both will be executed.
+17. Added the ctcp prefix for scripting. (as opposed to just alias and event).  i.e. (ctcp ping|ctcpreply $nick PING go away|end ctcp) where | represents end line.
+18. Made ctcps, aliases and events support wildcard names.  i.e. (ctcp *|echo -s CTCP by $nick ($command $args)|end ctcp) where | represents end line.
+19. Extended events and ctcps to support clauses.
+ Examples:
+ event text when $nick = "ChanServ"
+   echo -s "ChanServ spoke! ($text)"
+ end event
+	
+ event text unless $text like "*fuck*"
+   echo $chan "\b$nick\b: $text"
+ end event
+20. Fixed crashing problems when running sIRC on Windows9x, and even Windows 2000.
+21. Updated some icons. (if you have any I can use, please send them to webmaster@vcv.ath.cx)
+22. Attempted to improve scripting
+
+0.09.2720 - 1/04/02
+ 1. Fixed bug where channel modes didnt show at top.
+ 2. Added treeview for list of different windows open.
+ 3. Nicklist should fully work now, no messing up.
+ 4. Maximizing windows is still a little buggy, but almost there.  You really shouldnt have a problem that resizing the main window can't fix :P
+ 5. Fixed bug which caused sIRC to display garbage in the text display on Windows9x
+ 6. Made menus always visible on screen when popped up
+ 7. Modified menus look a little bit.
+ 8. Added support for more raw events: 001,002,003,004,251,252,254,255,372,375, and 376 (added in default script already)
+ 9. Added text history too all windows (hit up to view things previously typed).  It should act almost exactly how mIRC's does.
+10. You can finally reshow/rehide the server bar in the status window, and the topic bar in channel windows.  Just goto the view menu.
+
+0.08.1888 - 12/16/01
+ 1. Fixed the client not fully handling nick changes.  If a query was open with a user and they changed nicks, it didnt change it in the query
+ 2. Fixed an error with the nicklist being cleared each time it got a chunk of nicks from the server if the channel was large.
+ 3. Fixed IDENTd, so it actually works now :)
+ 4. Added passed local variables for scripting.  Check the new "default.sex" script and you may see what I mean.
+ 5. Added more commands (/server, /part, /beep) to scripting and command line.
+ 6. Fixed a bug with the /query command where it would only send the first word.
+ 7. Fixed the bug where the text popup menus would popup only in the topleft corner
+ 8. Did Remember, Forget, Reset (for Active Window, All Windows and main Client [MDIClient]).  It should all work good.
+ 9. Put a delay on the popup menus like normal menus have (thus also eliminating the problem of more than one popup menu being displayed [stupid bugs...]).
+ 10. Added stuff to options: you can finally change your nicks, real name and email in options.
+ 11. Changed NickLists from ListView to ListBox.  ListBox is much nicer :)
+ 12. Removed the toolbar for now.  It will be back soon. Use the menu for your needed commands.
+ 13. Redid the menu and taskbar in API, thus making it much faster hopefully.
+ 14. Modified the interface a little.
+ 15. Fixed the menus completely (I hope).
+
+0.07.1141 - 12/03/01
+ 1. Fixed an error where if all the names you entered into the list of nicks were taken, things would go haywire
+ 2. fixed the nicklist height
+ 3. fixed the client crashing out of nowhere when you had the script editor open
+
+0.07.1127 - 12/03/01
+ 1. Fixed a scripting bugged involving nested IF statements
+ 2. Fixed the problem with extra spaces being appended to scripts, the text buffer itself, and other things
+ 3. Added ability to change topic when you're an Operator in that channel
+ 4. Added a debug window (if you want to see all the data going in and out).  Everything is longer output in the status window
+ 5. XP Menus were having problems, so I was forced to make them less functional (If you click down on a menu, then try to move your mouse over another menu item while the first'spopup menu is shown, it will do nothing).
+ 6. Added ability to resize the nicklist (doesn't remember the position yet though).
+ 7. Added some more functions to scripting
+ 8. Added Queries (Private messages with users)
+ 9. Added /query command to open a query with a user (you can also use /msg to send them a message if not typing in the query window..)
+ 10. Made nicklist clear when you rejoin a channel (if you quit and reconnect), and then readd nicks so the nicklist is right.
+ 11. Fixed nicklist count display in caption
+ 12. Added mode display in channel caption
+
+0.06.804 - 11/29/01
+ 1. Added Office XP style menus (still working out a few kinks)
+ 2. Fixed stupid spelling mistake in script
+ 3. Added join, quit commands for scripts
+ 4. Made the "Auto Load Profile" feature functional
+ 5. Change profile menu now works, so you can change profiles if yours is on auto-load.
+ 6. Some functionality added to other menus also 

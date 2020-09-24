@@ -1,0 +1,7 @@
+alias main
+  msg "blah"
+  goto end
+  msg "shit"
+end:
+  msg "fuck"
+end alias

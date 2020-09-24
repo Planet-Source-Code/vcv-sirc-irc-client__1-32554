@@ -1,0 +1,22 @@
+alias fibonacci 
+  $number = $1 
+  if $number < 1 
+    return -1 
+  elseif ($number = 1) or ($number = 2) 
+    return 1 
+  else
+    return [eval [fibonacci [eval $number - 1]] + [fibonacci [eval $number - 2]]] 
+  end if
+end alias
+ 
+alias main 
+  echo -a [fibonacci [input "Enter the number of sequences for fibonacci"]] 
+end alias
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

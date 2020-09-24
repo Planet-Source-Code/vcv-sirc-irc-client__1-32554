@@ -1,0 +1,7 @@
+alias main
+    msg "Hello"
+    loop x 10000
+        ;do nothing
+    end loop
+    msg "Yellow"
+end alias

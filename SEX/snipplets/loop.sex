@@ -1,0 +1,16 @@
+alias main
+  $start = [ticks]
+  $num = 30000
+  loop $x $num
+    ; do nothing
+  end loop
+  $finish = [ticks]
+  msg "a $num\iteration loop took [eval $finish - $start] seconds" "Time"
+end alias
+
+
+
+
+
+
+

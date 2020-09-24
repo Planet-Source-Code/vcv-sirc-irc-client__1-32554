@@ -1,0 +1,292 @@
+alias blah
+   echo -s "hello\|world"
+end alias
+
+alias onotice
+	opnotice $source $1-
+end alias
+
+event 401
+	echo -s "\c04$message ($nick)"
+	echo -s -
+end event
+
+event 433
+	echo -s "\c04$message ($nick)"
+	echo -s -
+end event
+
+event 438
+	echo -s "\c04$message ($nick\->$newnick)"
+	echo -s -
+end event
+
+event 471
+	echo -s "\c04$channel\: $message"
+	echo -s -
+end event
+
+event 305
+	; back from away
+	echo -s $message
+	echo -s -
+end event
+
+event 306
+	; now away
+	echo -s $message
+	echo -s -
+end event
+
+event 301 ; whois away nick :reason
+	echo -q $nick "\c02$nick is away: $reason"
+end event
+
+event 307 ; whois nick :has identified
+	echo -q $nick "\c02$nick $message"
+end event
+
+event 310 ; whois nick :available for help
+	echo -q $nick "\c02$nick $message"
+end event
+
+event 311 ; whois info containing nick, email, name,hostmask
+    echo -q $nick "\c02$nick is $email ($username\@$address)"
+end event
+
+event 319 ; nick is on channels
+    echo -q $nick "\c02$nick is in: $channels"
+end event
+
+event 312 ; nick is using server, desc
+    echo -q $nick "\c02$nick is using: $server ($desc)"
+end event
+
+event 313 ; nick is an ircop
+	echo -q $nick "\c02$nick $message"
+end event
+
+event 320 ; is a registered nickname
+    echo -q [leftof $message " "] "\c02$message"
+end event
+
+event 317 ; signon time, seconds idle
+    echo -q $nick "\c02$nick\: $idle\, [asctime $signon] ($message)
+end event
+
+event 318 ; end of whois
+     ;echoquery $nick -
+end event
+
+ctcp *
+    if [left $target 1] = #
+        echo $target "\c10\[$nick\:$target $command\] $data"
+    else
+        echo -a "\c10\[$nick $command\] $data"        
+    end if
+end ctcp
+
+event ctcpreply unless $command = PING
+    if [left $target 1] = #
+    	echo $target "\c10\[$nick [ucase $command] reply\]: $data"
+    else
+    	echo -a "\c10\[$nick [ucase $command] reply\]: $data"
+	end if
+end event
+
+event ctcpreply when $command = PING
+	$replytime = [calc [ticks] - $data]
+	$replytime = [format $replytime ###,###.##]
+    if [left $target 1] = #
+    	echo $target "\c10\[$nick [ucase $command] reply\]: $<replytime>ms"
+    else
+    	echo -a "\c10\[$nick [ucase $command] reply\]: $<replytime>ms"
+	end if
+end event
+
+event ctcpsend
+    echo -a "\c10->\[$target\] [ucase $command] $data
+end event
+
+event noticesend
+	echo $target "\c05\-> -$target\-: $message"
+end event
+
+event opnoticesend
+	echo $target "\c05\-> -@$target\-: $message"
+end event
+
+ctcp PING
+    ctcpreply $nick PING $data
+end ctcp
+
+ctcp TIME
+    ctcpreply $nick TIME [date "ddd mmm dd hh:mm:ss yyyy"]
+end ctcp
+
+event 001
+    echo -s "$message"
+end event
+
+event 002
+    echo -s "$message"
+end event
+
+event 003
+    echo -s "$message"
+end event
+
+event 004
+    echo -s "$server $version"
+    echo -s "User Modes\u:\u $usermodes, Channel Modes\u:\u $chanmodes"
+end event
+
+event 251
+    echo -a "$message"
+end event
+
+event 251
+    echo -a "$message"
+end event
+
+event 252
+    echo -a "\b$opers\b $text"
+end event
+
+event 254
+    echo -a "\b$chansformed\b $message"
+end event
+
+event 255
+    echo -a "$message"
+end event
+event 372
+    echo -s "$message"
+end event
+
+event 375
+    echo -s "\c02$message"
+end event
+
+event 376
+;    end MOTD
+end event
+
+event error
+    echo -s "\c04\bError\b\u:\u\c $message"
+end event
+
+event topic
+    echo $channel "\c03\b$nick\b changes topic: $newtopic"
+end event
+
+event 332
+    echo $channel "\c03Topic is: $topic"
+end event
+
+event 333
+    echo $channel "\c03Topic set by \b$nick\b, on: [asctime $when]"
+end event
+
+event connect
+    echo -s "\c02* Connection with server (\b$server\b) has been established"
+end event
+                                                       
+event disconnect
+    echo -s "\c02* Connection with server has been closed."
+end event
+                                                
+event connecterror
+    echo -s "\c05* Connection Error($number): $desc, \bSource:\b $source"
+end event
+
+event quit
+   loop channum [chancount]
+      if [inchannel [channel $channum] $nick] = 1
+         echo [channel $channum] \c02\b$nick\b has quit IRC ($reason)
+      end if
+   end loop
+end event
+
+event nick
+   if $newnick = $me ; $2 = new nick, and the $me variable is set to the new nick before this event is called
+       echo -a "\c03Your nick is now \b$newnick\b (previously was \b$oldnick\b)"
+   end if
+
+   loop channum [chancount]
+      if [inchannel [channel $channum] $newnick] = 1
+         echo [channel $channum] "\c03\b$oldnick\b is now known as \b$newnick\b"
+      end if
+   end loop
+end event
+                                      
+event ping
+    echo -s "\c03Ping? Pong!"
+end event
+
+event text
+    if $nick = $me
+        echo $target "\b\k05$nick\k\b\u:\u $message"
+    else
+        if [instr $message $me]
+ 	    	echo $target \b\k12$nick\k\b\u:\u	$message
+        	beep
+        else
+            echo $target \b\k02$nick\k\b\u:\u	$message
+        end if
+    end if
+end event
+ 
+event join
+    echo $channel "\c03\b$nick\b has joined $channel"
+end event
+                      
+event part
+    if $reason = ""
+        echo $channel "\c03\b$nick\b has left $channel"
+    else
+        echo $channel "\c03\b$nick\b has left $channel ($reason)"
+    end if
+end event
+                      
+event kick
+    if $knick = $me
+        echo $channel "\c03You have been kicked by \b$nick\b ($reason)"
+    else
+        echo $channel "\c03\b$knick\b has been kicked by \b$nick\b ($reason)"
+    end if
+end event
+                                 
+event action
+    echo $target "\c06* $nick $action"
+end event
+                                          
+event notice
+    if [left $target 1] = @
+        echo [mid $target 2] "\c05-\b$nick\b\u:\u$target\-	$message"
+    elseif $target = $me
+        echo -a "\c05-\b$nick\b-	$message"
+    elseif [left $target 1] = #
+        echo $target "\c05-\b$nick\b\u:\u$2\-	$message"
+    else
+        echo $target "\c05-\b$nick\b-	$message"
+    end if
+end event
+
+event snotice
+    echo -s "\c05-\b$server\b- $message"
+end event
+
+event mode
+   echo $channel "\c03\b$nick\b sets mode: $modes"
+end event
+
+alias testloop
+    $x = 0
+    $start = [ticks]
+    loop x 3000
+        ;nothing
+    end loop
+    $final = [ticks]
+    echo -s "loop of 3000 iterations took about [eval $final - $start] seconds"
+end alias

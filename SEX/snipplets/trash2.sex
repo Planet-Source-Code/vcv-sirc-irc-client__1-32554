@@ -1,0 +1,16 @@
+alias main
+  $codeline = [input "Enter a line of code"]
+  if ($codeline) like (if *)
+    msg "if statement"
+  elseif ($codeline) like (elseif *)
+    msg "elseif statement"
+  elseif ($codeline) like (alias *)
+    msg "alias start"
+  elseif ($codeline) like (end *)
+    msg "end statement"
+  else 
+    msg "null"
+  end if
+end alias
+
+

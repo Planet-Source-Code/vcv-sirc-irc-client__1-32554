@@ -1,0 +1,11 @@
+PHyLe,		file main
+HaCK,		edit main
+KRaCK,		view main
+CoMz,		commands main
+FoRM,		window main
+HiZeLP,		help main
+
+# Begin Window menu
+CaSCaDe,	window_cascade
+TiZiLe HoRiZoNTaLLy,	window_tilehorizontally
+TiZiLe VeRTiCaLLy,	window_tilevertically

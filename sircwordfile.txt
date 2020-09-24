@@ -1,0 +1,56 @@
+/L9"SEX" Nocase Line Comment = ; Block Comment On = ` Block Comment Off = ` Escape Char = \ String Chars = " File Extensions = SEX
+/Delimiters = ~!@%^&*()+=|{}\[]:;"'<> ,.?
+/Function String 1 = "%alias *"
+/Function String 1 = "%event *"
+/Function String 3 = "%ctcp *"
+/C1"Keywords"
+alias
+ctcp
+else elseif end event
+if
+loop
+while
+/C3"Functions"
+asctime
+beep
+calc chancount channel channelcentral charcount ctcp ctcpreply
+date dec
+echo eval
+inc inchannel input instr
+join
+kick
+lcase left len
+me mid msg msgbox
+part
+query queryexists quit
+right
+senddata server set
+ticks time topic
+ucase
+/C3"Operators"
++
+-
+=
+*
+/
+\
+eq
+ne
+==
+!=
+<>
+>
+>=
+<=
+|
+and
+or
+xor
+&
+^
+like matches liek
+/C2"BEF"
+[
+]
+/C5"Variables"
+** $
